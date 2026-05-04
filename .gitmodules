@@ -1,3 +1,3 @@
 [submodule "pbx/source/asterisk"]
-	path = pbx/source/asterisk
+	path = services/pbx/source/asterisk
 	url = https://github.com/asterisk/asterisk.git

@@ -1,0 +1,50 @@
+services:
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    image: pbx-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=pbx
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: pbx-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  pbx:
+    build:
+      context: ./pbx
+      dockerfile: Dockerfile
+    image: pbx-asterisk
+    ports:
+      - "5060:5060/udp"
+      - "5060:5060/tcp"
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    image: pbx-web
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  db-data:
