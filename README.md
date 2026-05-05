@@ -1,9 +1,8 @@
-# pbx-server-template
+# pbx-sample
 
 ## 目錄結構
 ```
-/pbx-server-template
-├── README.md
+/pbx-sample
 ├── docker-compose.yml          # Root docker-compose (if any)
 ├── hal                         # Hardware Abstraction Layer (硬體與宿主機抽象層)
 │   └── os
