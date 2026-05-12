@@ -3,7 +3,6 @@
 ## 目錄結構
 ```
 /pbx-sample
-├── docker-compose.yml          # Root docker-compose (if any)
 ├── hal                         # Hardware Abstraction Layer (硬體與宿主機抽象層)
 │   └── os
 │       ├── general             # 通用於各大 Linux 發行版的通用腳本與驅動
@@ -16,7 +15,10 @@
 │           └── scripts
 ├── services                    # 純軟體容器層 (無關硬體，隨處可跑)
 │   ├── api
-│   │   └── Dockerfile          # Golang + Gin API 服務
+│   │   ├── Dockerfile          # Golang + Gin API 服務構建腳本
+│   │   ├── go.mod              # Go 模組設定檔
+│   │   ├── go.sum              # Go 依賴校驗檔
+│   │   └── main.go             # API 程式進入點 (Gin framework)
 │   ├── db
 │   │   └── Dockerfile          # PostgreSQL 資料庫服務
 │   ├── docker-compose.yml      # 管理四個容器的設定檔
